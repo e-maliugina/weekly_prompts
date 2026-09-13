@@ -1,0 +1,8 @@
+Chapter 6: Search the internet to learn what happens when you try to reference a non-existing key in a dictionary. 
+           What type error is encountered? How can that be avoided?
+
+  When you try to reference a key that doesn't exist, for example, with print(dict['missing_key']), Python will stop executing and raise a KeyError. To avoid the KeyError and
+stop it from happening in the first place, the most commonly used method is by using the .get() function. It allows you to get a value of None instead of an error when the 
+referenced key doesn't exist and also optionally assign a value if the value associated with the key doesn't exist and you want to replace None. You can also use an if-else 
+statement and the in operator to check if the key exists in the dictionary and output a different value of your choice if it doesn't. Another comparable method to if-else is 
+the try-except block, where Python will execute the 'try' part except when there is a KeyError, in which case it will output the specified exception value that you provide. 
