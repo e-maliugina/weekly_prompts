@@ -1,0 +1,94 @@
+Chapter 9: Explain how creating and using classes supports Object Oriented Programming and S.O.L.I.D. design principles, give specific examples.
+Classes are the main building blocks of object-oriented programming, as they let you group data and methods into easy to understand units. When classes
+are designed around clear purposes, they also make it a lot easier to apply SOLID: Single Responsibility, Open-Closed, Liskov Substitution, Interface 
+Segregation, and Dependency Inversion. The "Single Responsibility" principle of S.O.L.I.D states that a class should have one job, for example: 
+class Student:
+    def __init__(self, name):
+        self.name = name
+    def introduce(self):
+        return f"My name is {self.name}."
+class StudentFile:
+    def save(self, student):
+        print(f"Saving {student.name} to a file.")
+
+student = Student("Bobby")
+print(student.introduce())
+file = StudentFile()
+file.save(student)
+
+In these two classes, the Student represents just the student themself, but the StudentFile class dictates how the student's information is saved, so if
+you want to change the saving method, you would edit StudentFile and not Student.
+Open-Closed says that code should be easy to extend without changing existing code, for example:
+class Animal:
+    def speak(self):
+        pass
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
+
+animals = [Dog(), Cat()]
+for animal in animals:
+    print(animal.speak())
+
+The code will still work even if you add new animals. Liskov Substitution states that a subclass should work when placed instead of the class itself:
+class Shape:
+    def area(self):
+        pass
+class Square(Shape):
+    def __init__(self, side):
+        self.side = side
+    def area(self):
+        return self.side * self.side
+
+def print_area(shape):
+    print(shape.area())
+square = Square(4)
+print_area(square)
+
+The Square subclass works when the Shape class is expected because they have the same general behavior.
+Interface Segregation says that a class should not be forced to use methods it doesn't need;
+class Worker:
+    def write_code(self):
+        pass
+    def drive_truck(self):
+        pass
+instead of forcing every worker to both write and drive we can use other classes to share the responsibilities, since the programmer doesn't need a
+drive.truck() method and a driver doesn't need a write.code() method, which avoids redundancy.
+class Programmer:
+    def write_code(self):
+        print("Writing code.")
+class Driver:
+    def drive_truck(self):
+        print("Driving a truck.")
+
+programmer = Programmer()
+programmer.write_code()
+driver = Driver()
+driver.drive_truck()
+
+And finally, there is the Dependency Inversion, where a class should depend on a general idea and not a specific detail:
+class EmailSender:
+    def send(self, message):
+        print(f"Email: {message}")
+class Greeting:
+    def __init__(self, sender):
+        self.sender = sender
+    def say_hello(self):
+        self.sender.send("Hello!")
+
+email = EmailSender()
+greeting = Greeting(email)
+greeting.say_hello()
+
+class TextSender:
+    def send(self, message):
+        print(f"Text message: {message}")
+
+text = TextSender()
+greeting = Greeting(text)
+greeting.say_hello()
+
+The Greeting only requires an object with send(), and it doesn't matter which class it uses.
