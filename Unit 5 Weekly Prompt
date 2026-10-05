@@ -1,0 +1,8 @@
+Chapter 11: Explain why creating tests can be useful in the process of software development.
+
+    Writing tests can be helpful in many ways when the process of software development is underway. When using tests, you can be more confident that your code will work as
+intended when used by more and more people. Tests allow you to evaluate new additions to your code to make certain that whatever you're changing doesn't break your existing 
+program. Mistakes will happen during software development, so it is important that tests allow you to catch problems before they cause issues for users of the program.
+Tests also, when well-written, act as a form of self-documenting code. By listing the expected inputs, outputs, and behavior, tests make the program easier to understand
+and maintain. Another benefit of using tests is that it encourages the development of clean and more modular code as well as increases the developers' confidence in making
+changes, knowing that any possible problems and errors will be caught by the test.
